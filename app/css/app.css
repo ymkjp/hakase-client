@@ -1,0 +1,9 @@
+/* app css stylesheet */
+
+.vertical-margins {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+
+/* http://angular-ui.github.io/bootstrap/#/modal */
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }

@@ -4,3 +4,10 @@ bower_components/
 
 build/
 dist/
+
+# https://github.com/angular/angular-seed/blob/master/.gitignore
+logs/*
+!.gitkeep
+tmp
+.idea
+.DS_Store
