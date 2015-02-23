@@ -1,5 +1,5 @@
-<div class="container-fluid">
-  <h2 class="text-center">Get frequent words and difficulty</h2>
+<div class="container-fluid" ng-controller="WordListCtrl">
+  <h2 class="text-center">Get frequent words and Textual Readability</h2>
   <div class="vertical-margins">
     <form id="target-form" name="targetForm" class="form-horizontal" ng-controller="TargetFormCtrl" ng-submit="submit()">
       <div class="row form-group form-group-lg" ng-class="{'has-error': targetForm.target_url.$dirty && targetForm.target_url.$invalid}">
@@ -20,7 +20,7 @@
     </form>
   </div>
 
-  <div ng-repeat="word in words" class="panel panel-default">
+  <div ng-repeat="word in words" class="panel panel-default" ng-controller="PanelCtrl">
     <div class="panel-heading"><a href="{{word.target_url}}" target="_blank">{{word.target_url}}&nbsp;<i class="fa fa-external-link"></i></a></div>
     <div class="panel-body">
       <div class="row">
@@ -28,18 +28,26 @@
           <a href="{{word.target_url}}" target="_blank">
             <img class="media-object img-thumbnail" ng-src="http://capture.heartrails.com/large?{{word.target_url}}">
           </a>
+          <div class="vertical-margins">
+            <p>Readability: {{word.readability.score | readabilityComment}}</p>
+            <div class="progress">
+              <div class="progress-bar" role="progressbar"
+                   aria-valuenow="{{word.readability.score}}"
+                   aria-valuemin="0" aria-valuemax="100"
+                   type="{{word.readability.score | readabilityLevel}}"
+                   style="min-width: 2em; width: {{word.readability.score}}%;">
+                {{word.readability.score | number:0}}%
+              </div>
+            </div>
+            <span class="flag-icon flag-icon-{{word.detected_languages[0].lang_code | convertToCountryCode}}"></span>
+            Language: {{word.detected_languages[0].lang_code}} ({{ word.detected_languages[0].confidence *100 | number:0 }}%)
+          </div>
         </div>
         <div class="col-sm-6">
           <div class="table-responsive">
-            <table class="table table-bordered table-striped">
-              <caption>Document difficulty: {{word.readability.score | number:0}}<br>
-                Language code: {{word.detected_languages[0].lang_code}} ({{ word.detected_languages[0].confidence | number:2 }})</li>
-              </caption>
-              <tr ng-repeat="frequent_word in word.frequent_words">
-                <td>{{frequent_word.word}}</td>
-                <td>{{frequent_word.count}}</td>
-              </tr>
-            </table>
+            <div class="gridStyle"
+                 ng-init="frequentWordData=word.frequent_words"
+                 ng-grid="gridOptions"></div>
           </div>
         </div>
       </div>
