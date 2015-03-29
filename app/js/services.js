@@ -13,7 +13,7 @@ hakaseServices.factory('Word', ['$resource',
 
 hakaseServices.factory('WordExample', ['$resource',
     function($resource) {
-        return $resource('words/:wordId.json', {}, {
+        return $resource('sample/:wordId.json', {}, {
             query: {method: 'GET', params: {wordId: 'words'}, isArray: true}
         });
 }]);

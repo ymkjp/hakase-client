@@ -3,7 +3,7 @@ bower_components/
 *.log
 
 build/
-dist/
+!dist/
 
 !.bowerrc
 !.jshintrc
