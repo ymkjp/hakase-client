@@ -6,8 +6,10 @@ var hakaseServices = angular.module('hakaseServices', ['ngResource']);
 
 hakaseServices.factory('Word', ['$resource',
     function($resource) {
-        // http://localhost:5000/api/v1/teach?target_url=
-        return $resource('http://localhost:5000/api/v1/teach', {}, {
+        /*
+         ?target_url=
+         */
+        return $resource('http://192.168.59.103:8000/api/v1/teach', {}, {
         });
 }]);
 

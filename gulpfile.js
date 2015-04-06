@@ -34,6 +34,17 @@ gulp.task('sample', function () {
     .pipe(gulp.dest('dist/sample'));
 });
 
+gulp.task('bower_components', function () {
+  return gulp.src('app/bower_components/**/*')
+    .pipe(gulp.dest('dist/bower_components'));
+});
+
+gulp.task('partial_html', function () {
+  return gulp.src('app/partials/**/*.html')
+    .pipe($.minifyHtml())
+    .pipe(gulp.dest('dist/partials'));
+});
+
 gulp.task('scss',function(){
 //  return gulp.src('app/scss/**/*.scss')
 //    .pipe($.rubySass({
@@ -45,7 +56,7 @@ gulp.task('scss',function(){
 
 gulp.task('html',function(){
   var assets = $.useref.assets({searchPath: ['.tmp','app']});
-  return gulp.src('app/**/*.html')
+  return gulp.src('app/{index.html, partials/**/.html}')
     .pipe(assets)
     .pipe($.if('*.js',$.uglify({preserveComments: 'some'})))
     .pipe($.if('*.css',$.csso()))
@@ -76,7 +87,7 @@ gulp.task('watch',function(){
 });
 
 gulp.task('build', function (cb) {
-  runSequence('clean','scss', ['jshint', 'html', 'image', 'sample', 'flag'], cb);
+  runSequence('clean','scss', ['jshint', 'html', 'image', 'sample', 'flag', 'partial_html', 'bower_components'], cb);
 });
 
 gulp.task('default',['watch']);

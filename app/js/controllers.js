@@ -33,17 +33,18 @@ hakaseControllers.controller('TargetFormCtrl', ['$scope', 'Word',
     };
 }]);
 
-//hakaseControllers.controller('WordDetailCtrl', ['$scope', '$routeParams', 'Word',
-//  function ($scope, $routeParams, Word) {
-//    $scope.word = Phone.get({wordId: $routeParams.wordId}, function(word) {
-//        $scope.mainImageUrl = word.images[0];
-//    });
-//
-//    $scope.setImage = function(imageUrl) {
-//        $scope.mainImageUrl = imageUrl;
-//    }
-//}]);
+/**
+hakaseControllers.controller('WordDetailCtrl', ['$scope', '$routeParams', 'Word',
+  function ($scope, $routeParams, Word) {
+    $scope.word = Phone.get({wordId: $routeParams.wordId}, function(word) {
+        $scope.mainImageUrl = word.images[0];
+    });
 
+    $scope.setImage = function(imageUrl) {
+        $scope.mainImageUrl = imageUrl;
+    }
+}]);
+**/
 
 hakaseControllers.controller('PanelCtrl', ['$scope',
   function ($scope) {
